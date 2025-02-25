@@ -35,7 +35,7 @@
     <developers>
         <developer>
             <id>adobedam</id>
-            <name>Administrator</name>
+            <name>Administrator Adobe DAM</name>
             <email>admin@adobedam.com</email>
             <url>https://github.com/adobedam</url>
         </developer>
@@ -55,6 +55,20 @@
     </scm>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>

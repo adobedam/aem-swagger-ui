@@ -1,0 +1,20 @@
+<sly data-sly-include="index.html"/>
+<sly data-sly-use.specModel="com.adobedam.core.swagger.model.SpecModel"/>
+    <script type="text/javascript" data-sly-test="${specModel.apiSpecUrl}">
+        window.onload = function() {
+            window.ui = SwaggerUIBundle({
+                url: "${specModel.apiSpecUrl @ context='html'}",
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "StandaloneLayout"
+            });
+        };
+    </script>
+</sly>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/adobedam/swagger/ui"/>
+    <filter root="/apps/adobedam/swagger/application"/>
+    <filter root="/apps/adobedam/install"/>
+    <filter root="/apps/cq/core/content/nav/tools/adobedam"/>
+    <filter root="/etc/adobedam"/>
+</workspaceFilter>

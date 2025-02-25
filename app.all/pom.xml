@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.adobedam</groupId>
+        <artifactId>aem-swagger</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>aem-swagger.app.all</artifactId>
+    <packaging>content-package</packaging>
+    <name>AEM - Swagger - Application All</name>
+    <description>AEM - Swagger - UI Application all</description>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/content/META-INF</directory>
+                <targetPath>../vault-work/META-INF</targetPath>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/content/jcr_root</directory>
+                <excludes>
+                    <exclude>**/.vlt</exclude>
+                    <exclude>**/.vltignore</exclude>
+                    <exclude>**/.gitignore</exclude>
+                    <exclude>**/*.iml</exclude>
+                    <exclude>**/.classpath</exclude>
+                    <exclude>**/.project</exclude>
+                    <exclude>**/.settings</exclude>
+                    <exclude>**/.DS_Store</exclude>
+                    <exclude>**/target/**</exclude>
+                    <exclude>**/pom.xml</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>${project.build.directory}/swagger-ui/swagger-ui-${swagger.ui.version}/dist</directory>
+                <targetPath>../vault-work/jcr_root/etc/adobedam/swagger/ui</targetPath>
+                <excludes>
+                    <exclude>**/index.html</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>${project.build.directory}/swagger-ui/swagger-ui-${swagger.ui.version}/dist/</directory>
+                <targetPath>../vault-work/jcr_root/apps/adobedam/swagger/ui/</targetPath>
+                <includes>
+                    <include>**/*.html</include>
+                </includes>
+            </resource>
+        </resources>
+
+
+        <!-- <sourceDirectory>src/main/content/jcr_root</sourceDirectory> -->
+        <plugins>
+            <!-- download the swagger ui release and extract it -->
+            <plugin>
+                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <artifactId>download-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>download swagger release</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>wget</goal>
+                        </goals>
+                        <configuration>
+                            <url>https://github.com/swagger-api/swagger-ui/archive/v${swagger.ui.version}.zip</url>
+                            <unpack>true</unpack>
+                            <outputDirectory>${project.build.directory}/swagger-ui</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.jackrabbit</groupId>
+                <artifactId>filevault-package-maven-plugin</artifactId>
+                <configuration>
+                    <properties>
+                        <cloudManagerTarget>none</cloudManagerTarget>
+                    </properties>
+                    <group>com.adobedam</group>
+                    <name>aem-swagger.app.all</name>
+                    <packageType>mixed</packageType>
+                    <repositoryStructurePackages>
+                        <repositoryStructurePackage>
+                            <groupId>com.adobedam</groupId>
+                            <artifactId>aem-swagger.app.structure</artifactId>
+                        </repositoryStructurePackage>
+                    </repositoryStructurePackages>
+                    <embeddeds>
+                        <embedded>
+                            <groupId>com.adobedam</groupId>
+                            <artifactId>aem-swagger.core</artifactId>
+                            <target>/apps/adobedam/install</target>
+                        </embedded>
+                        <embedded>
+                            <groupId>com.adobedam</groupId>
+                            <artifactId>aem-swagger.app.config</artifactId>
+                            <type>zip</type>
+                            <target>/apps/adobedam/install</target>
+                        </embedded>
+                    </embeddeds>
+                    <skipSubPackageValidation>true</skipSubPackageValidation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.day.jcr.vault</groupId>
+                <artifactId>content-package-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <verbose>true</verbose>
+                    <failOnError>true</failOnError>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>htl-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>validate-htl-scripts</id>
+                        <goals>
+                            <goal>validate</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <generateJavaClasses>true</generateJavaClasses>
+                            <generatedJavaClassesPrefix>org.apache.sling.scripting.sightly</generatedJavaClassesPrefix>
+                            <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+                            <allowedExpressionOptions>
+                                <allowedExpressionOption>cssClassName</allowedExpressionOption>
+                                <allowedExpressionOption>decoration</allowedExpressionOption>
+                                <allowedExpressionOption>decorationTagName</allowedExpressionOption>
+                                <allowedExpressionOption>wcmmode</allowedExpressionOption>
+                            </allowedExpressionOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.googlecode.maven-download-plugin</groupId>
+            <artifactId>download-maven-plugin</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobedam</groupId>
+            <artifactId>aem-swagger.app.structure</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobedam</groupId>
+            <artifactId>aem-swagger.app.config</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobedam</groupId>
+            <artifactId>aem-swagger.core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobe.aem</groupId>
+            <artifactId>uber-jar</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- HTL dependencies needed for the HTL Maven Plugin source code generation -->
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.scripting.sightly.runtime</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>

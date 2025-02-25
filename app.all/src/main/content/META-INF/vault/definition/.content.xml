@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          jcr:primaryType="vlt:PackageDefinition"
+          providerLink="https://github.com/adobedam/aem-swagger-ui"
+          providerUrl="https://www.adobedam.com"
+          testedWith="AEM 6.5">
+</jcr:root>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:description="View API Specs."
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Swagger UI"
+    href="/etc/adobedam/swagger/ui/index.html?url=https://raw.githubusercontent.com/qct/swagger-example/refs/heads/master/swagger-server/src/main/resources/openapi3.0.0.yml"
+    icon="transferToPlatform"
+    id="swagger-ui-custom"
+    target="_blank"/>

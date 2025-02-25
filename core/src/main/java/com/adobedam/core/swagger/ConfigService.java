@@ -19,7 +19,7 @@ public class ConfigService {
     @Modified
     protected void activate(Config config) {
         this.apiSpecUrl = config.apiSpecUrl();
-        LOG.info("ConfigService Initialized - API Spec URL: {}", this.apiSpecUrl);
+        LOG.debug("ConfigService Initialized - API Spec URL: {}", this.apiSpecUrl);
     }
 
     public String getApiSpecUrl() {

@@ -25,7 +25,7 @@ public class SpecModel {
 
     @PostConstruct
     protected void init() {
-        logger.info("Init SpecModel : " + configService.getApiSpecUrl());
+        logger.debug("Init SpecModel : " + configService.getApiSpecUrl());
         if (configService != null) {
             apiSpecUrl = configService.getApiSpecUrl();
         } else {

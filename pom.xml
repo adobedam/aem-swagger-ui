@@ -226,7 +226,7 @@ Bundle-Category: ${componentGroupName}# export all versioned packages except for
                         <dependency>
                             <groupId>org.apache.sling</groupId>
                             <artifactId>org.apache.sling.bnd.models</artifactId>
-                            <version>1.0.1</version>
+                            <version>1.0.0</version>
                         </dependency>
                         <dependency>
                             <groupId>org.apache.sling</groupId>
@@ -366,7 +366,7 @@ Bundle-Category: ${componentGroupName}# export all versioned packages except for
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
                     <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.1</version>
+                    <version>1.0.0</version>
                     <configuration>
                         <lifecycleMappingMetadata>
                             <pluginExecutions>
@@ -578,7 +578,7 @@ Bundle-Category: ${componentGroupName}# export all versioned packages except for
             <dependency>
                 <groupId>org.osgi</groupId>
                 <artifactId>org.osgi.annotation.bundle</artifactId>
-                <version>1.0.1</version>
+                <version>1.0.0</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -620,7 +620,7 @@ Bundle-Category: ${componentGroupName}# export all versioned packages except for
             <dependency>
                 <groupId>org.osgi</groupId>
                 <artifactId>org.osgi.resource</artifactId>
-                <version>1.0.1</version>
+                <version>1.0.0</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>

@@ -8,7 +8,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>aem-swagger.core</artifactId>
-    <name>AEM - Swagger - Application Core Bundle</name>
+    <name>${project.groupId}:${project.artifactId}</name>
     <description>Core bundle for Swagger Tool</description>
     <build>
         <plugins>

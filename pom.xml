@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.adobedam</groupId>
     <artifactId>aem-swagger</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>AEM - Swagger</description>
 
@@ -32,6 +34,7 @@
         <uber-jar.version>6.5.22</uber-jar.version>
         <swagger.ui.version>5.19.0</swagger.ui.version>
         <keyname>33C0330C91FCC3C1</keyname>
+        <server>central</server>
     </properties>
     <developers>
         <developer>
@@ -59,7 +62,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
+                <version>1.5</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -70,10 +73,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <keyname>${keyname}</keyname>
                     <gpgArguments>
-                        <arg>--batch</arg>
-                        <arg>--yes</arg>
                         <arg>--pinentry-mode</arg>
                         <arg>loopback</arg>
                     </gpgArguments>
@@ -107,7 +107,31 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>3.0.1</version>
-                <inherited>true</inherited>
+                <executions>
+                    <execution>
+                        <id>attach-source</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Maven Javadoc Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.6.3</version>
+                <configuration>
+                    <source>11</source>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <!-- Maven Enforcer Plugin -->
             <plugin>
@@ -284,7 +308,8 @@ Bundle-Category: ${componentGroupName}# export all versioned packages except for
                         <filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
                         <validatorsSettings>
                             <jackrabbit-nodetypes>
-                                <options>                                    <!-- use the nodetypes and namespaces from the aem-nodetypes.jar provided in the plugin dependencies -->
+                                <options>                                    <!-- use the nodetypes and namespaces from the
+                                    aem-nodetypes.jar provided in the plugin dependencies -->
                                     <cnds>tccl:aem.cnd</cnds>
                                 </options>
                             </jackrabbit-nodetypes>
@@ -335,7 +360,9 @@ Bundle-Category: ${componentGroupName}# export all versioned packages except for
                     <artifactId>build-helper-maven-plugin</artifactId>
                     <version>3.0.0</version>
                 </plugin>
-                <!--This plugin's configuration is used to store Eclipse          m2e settings only. It has no influence on the Maven build itself. -->
+                <!--This
+                plugin's configuration is used to store Eclipse          m2e settings only. It has no
+                influence on the Maven build itself. -->
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
                     <artifactId>lifecycle-mapping</artifactId>
@@ -353,7 +380,7 @@ Bundle-Category: ${componentGroupName}# export all versioned packages except for
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore/>
+                                        <ignore />
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
@@ -367,7 +394,7 @@ Bundle-Category: ${componentGroupName}# export all versioned packages except for
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore/>
+                                        <ignore />
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
@@ -380,7 +407,7 @@ Bundle-Category: ${componentGroupName}# export all versioned packages except for
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore/>
+                                        <ignore />
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>
@@ -391,11 +418,8 @@ Bundle-Category: ${componentGroupName}# export all versioned packages except for
         </pluginManagement>
     </build>
     <profiles>
-        <!-- ====================================================== -->
-        <!-- A D O B E P U B L I C P R O F I L E -->
-        <!-- ====================================================== -->
         <profile>
-            <id>adobe-public</id>
+            <id>release-sign-artifacts</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -488,7 +512,8 @@ Bundle-Category: ${componentGroupName}# export all versioned packages except for
                                         <goal>install</goal>
                                     </goals>
                                     <configuration>
-                                        <targetURL>http://${aem.host}:${aem.port}/crx/packmgr/service.jsp</targetURL>
+                                        <targetURL>
+                                            http://${aem.host}:${aem.port}/crx/packmgr/service.jsp</targetURL>
                                     </configuration>
                                 </execution>
                             </executions>
@@ -527,7 +552,8 @@ Bundle-Category: ${componentGroupName}# export all versioned packages except for
                                         <goal>install</goal>
                                     </goals>
                                     <configuration>
-                                        <targetURL>http://${aem.publish.host}:${aem.publish.port}/crx/packmgr/service.jsp</targetURL>
+                                        <targetURL>
+                                            http://${aem.publish.host}:${aem.publish.port}/crx/packmgr/service.jsp</targetURL>
                                     </configuration>
                                 </execution>
                             </executions>

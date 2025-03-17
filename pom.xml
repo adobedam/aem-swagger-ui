@@ -11,7 +11,7 @@
     <groupId>com.adobedam</groupId>
     <artifactId>aem-swagger</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.5-SNAPSHOT</version>
+    <version>1.0.5</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>AEM - Swagger</description>
 
@@ -64,7 +64,7 @@
         <url>https://github.com/adobedam/aem-swagger-ui</url>
         <connection>scm:git:git@github.com:adobedam/aem-swagger-ui.git</connection>
         <developerConnection>scm:git:git@github.com:adobedam/aem-swagger-ui.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>aem-swagger-1.0.5</tag>
     </scm>
     
     <build>

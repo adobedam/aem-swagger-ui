@@ -61,10 +61,10 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git://github.com/adobedam/aem-swagger-ui.git</connection>
-        <developerConnection>scm:git:ssh://github.com:adobedam/aem-swagger-ui.git</developerConnection>
         <url>https://github.com/adobedam/aem-swagger-ui</url>
-        <tag>aem-swagger-1.0.1</tag>
+        <connection>scm:git:git://git@github.com:adobedam/aem-swagger-ui.git</connection>
+        <developerConnection>scm:git:git@github.com:adobedam/aem-swagger-ui.git</developerConnection>
+        <tag>HEAD</tag>
     </scm>
     
     <build>

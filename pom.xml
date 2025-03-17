@@ -60,9 +60,16 @@
         </license>
     </licenses>
 
-    <scm>
+    <!-- <scm>
         <url>https://github.com/adobedam/aem-swagger-ui</url>
         <connection>scm:git:git://git@github.com:adobedam/aem-swagger-ui.git</connection>
+        <developerConnection>scm:git:git@github.com:adobedam/aem-swagger-ui.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm> -->
+
+    <scm>
+        <url>https://github.com/adobedam/aem-swagger-ui</url>
+        <connection>scm:git:git@github.com:adobedam/aem-swagger-ui.git</connection>
         <developerConnection>scm:git:git@github.com:adobedam/aem-swagger-ui.git</developerConnection>
         <tag>HEAD</tag>
     </scm>

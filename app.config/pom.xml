@@ -44,7 +44,7 @@
                 <artifactId>maven-deploy-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>deploy-release</id>
+                        <id>default-deploy</id>
                         <phase>deploy</phase>
                         <goals>
                             <goal>deploy</goal>

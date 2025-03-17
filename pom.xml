@@ -104,13 +104,22 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
+                <version>${maven-release-plugin}</version>
                 <configuration>
-                    <scmCommentPrefix>[maven-scm] :</scmCommentPrefix>
-                    <preparationGoals>clean install</preparationGoals>
-                    <goals>install</goals>
-                    <releaseProfiles>release</releaseProfiles>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <goals>deploy</goals>
+                    <checkModificationExcludes>
+                        <checkModificationExclude>${project.build.directory}</checkModificationExclude>
+                        <checkModificationExclude>**/target</checkModificationExclude>
+                    </checkModificationExcludes>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-scm-plugin</artifactId>
+                        <version>${maven-scm-plugin}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <!-- Maven Source Plugin -->
             <plugin>

@@ -9,7 +9,6 @@
     </parent>
 
     <artifactId>aem-swagger.app.all</artifactId>
-    <version>1.0.7-SNAPSHOT</version>
     <packaging>content-package</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>AEM - Swagger - UI Application all</description>
@@ -174,6 +173,12 @@
                     <!-- <autoPublish>true</autoPublish>
                     <waitUntil>published</waitUntil> -->
                 </configuration>
+            </plugin>
+            <!-- Maven Dependency Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.0</version>
             </plugin>
         </plugins>
     </build>
